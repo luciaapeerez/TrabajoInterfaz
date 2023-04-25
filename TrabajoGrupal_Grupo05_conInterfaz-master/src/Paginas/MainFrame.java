@@ -345,8 +345,8 @@ public class MainFrame extends JFrame implements Serializable{
                     Contenedor C = puerto.informacion_puerto(peso, numero);
                     if (C != null) {
                         etiError.setText("");
-                        Pag2 verPag2 = new Pag2(C);
-                        verPag2.setVisible(true);
+                        PesoPagina verPesoPagina = new PesoPagina(C);
+                        verPesoPagina.setVisible(true);
                     }
                 }
             }
