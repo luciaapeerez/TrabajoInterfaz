@@ -1,3 +1,4 @@
+//Lucía Pérez Abad
 package Paginas;
 
 import javax.swing.*;
@@ -48,6 +49,7 @@ public class MainFrame extends JFrame implements Serializable{
     private JRadioButton botHub2;
     private JRadioButton botHub3;
     private JLabel etiHub;
+    private JButton botMostrardatosPeso;
     private Puerto puerto;
     public MainFrame() {
         setContentPane(mainPanel);
@@ -322,6 +324,31 @@ public class MainFrame extends JFrame implements Serializable{
             @Override
             public void actionPerformed(ActionEvent e) {
                 textEstado.setText(puerto.getP(2).toString());
+            }
+        });
+        botMostrardatosPeso.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if(Objects.equals(textPeso.getText(), "")){
+                    etiError.setText("* Error no hay peso establecido");
+                }
+                else{
+                    int numero = 0;
+                    if (botHub1.isSelected()) {
+                        numero = 0;
+                    } else if (botHub2.isSelected()) {
+                        numero = 1;
+                    } else if (botHub3.isSelected()) {
+                        numero = 2;
+                    }
+                    int peso = Integer.parseInt(textPeso.getText());
+                    Contenedor C = puerto.informacion_puerto(peso, numero);
+                    if (C != null) {
+                        etiError.setText("");
+                        Pag2 verPag2 = new Pag2(C);
+                        verPag2.setVisible(true);
+                    }
+                }
             }
         });
     }
